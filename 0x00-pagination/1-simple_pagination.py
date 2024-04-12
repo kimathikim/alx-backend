@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+"""This module contains the function index_range"""
 
 import csv
 import math

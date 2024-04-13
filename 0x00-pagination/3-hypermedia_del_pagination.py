@@ -32,20 +32,17 @@ class Server:
         if self.__indexed_dataset is None:
             dataset = self.dataset()
             truncated_dataset = dataset[:1000]
-            self.__indexed_dataset = {i: dataset[i]
-                                      for i in range(len(dataset))}
+            self.__indexed_dataset = {i: dataset[i] for i in range(len(dataset))}
         return self.__indexed_dataset
 
     def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
         """This function get the hyper index and returns a dictionary"""
         assert index is None or index >= 0 and index < len(self.dataset())
-        assert isinstance(
-            page_size, int) and page_size > 0 and page_size <= 1000
+        assert isinstance(page_size, int) and page_size > 0 and page_size <= 1000
         data = self.dataset()
         indexed_data = self.indexed_dataset()
         next_index = index + page_size
-        page = [indexed_data[i]
-                for i in range(index, next_index) if i in indexed_data]
+        page = [indexed_data[i] for i in range(index, next_index) if i in indexed_data]
         return {
             "index": index,
             "next_index": next_index,

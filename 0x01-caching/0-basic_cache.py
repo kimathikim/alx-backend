@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """This module implement the caching system"""
 
-from base_caching import BaseCaching
+from basimport BaseCaching
 
 
 class BasicCache(BaseCaching):
@@ -23,3 +23,4 @@ class BasicCache(BaseCaching):
         if key is None or key not in self.cache_data:
             return
         return self.cache_data.get(key)
+

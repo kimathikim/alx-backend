@@ -19,4 +19,5 @@ try:
         print("OK")
 except:
     print(sys.exc_info()[1])
+    print(sys.exc_info()[1])
 

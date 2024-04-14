@@ -32,4 +32,4 @@ class FIFOCache(BaseCaching):
         """This function defines how to get data from the system"""
         if key is None or key not in self.cache_data:
             return None
-        print(self.cache_data)
+        return self.cache_data.get(key)

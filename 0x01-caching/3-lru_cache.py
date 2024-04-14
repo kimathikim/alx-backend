@@ -29,6 +29,7 @@ class LRUCache(BaseCaching):
         self.order.append(key)
 
     def get(self, key):
+        """This method gets the values from a specific part of the cache"""
         if key in self.cache_data:
             self.order.remove(key)
             self.order.append(key)

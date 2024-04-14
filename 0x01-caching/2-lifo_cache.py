@@ -18,17 +18,15 @@ class LIFOCache(BaseCaching):
             return
 
         if key in self.cache_data:
-            # update the item
             self.cache_data[key] = item
             self.queue.remove(key)
             self.queue.append(key)
+            return
 
-            # THE algorithm
         if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
-            last_key = self.queue.pop(-1)
+            last_key = self.queue.pop()
             del self.cache_data[last_key]
             print("DISCARD: {}".format(last_key))
-
         self.cache_data[key] = item
         self.queue.append(key)
 

@@ -33,7 +33,6 @@ class LIFOCache(BaseCaching):
     def get(self, key):
         """This function defined the method that gets data from the cache"""
         # check if the cache exists or if it is null
-        if key in self.cache_data or key is None:
-            return None
-
-        return self.cache_data.get(key)
+        if key:
+            return self.cache_data.get(key)
+        return None

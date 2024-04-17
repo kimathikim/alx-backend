@@ -1,41 +1,28 @@
 #!/usr/bin/python3
-"""100-main"""
+"""
+Test
+"""
 
-LFUCache = __import__("100-lfu_cache").LFUCache
+import sys
 
-my_cache = LFUCache()
-my_cache.put("A", "Hello")
-my_cache.put("B", "World")
-my_cache.put("C", "Holberton")
-my_cache.put("D", "School")
-my_cache.print_cache()
-print(my_cache.get("B"))
-my_cache.put("E", "Battery")
-my_cache.print_cache()
-my_cache.put("C", "Street")
-my_cache.print_cache()
-print(my_cache.get("A"))
-print(my_cache.get("B"))
-print(my_cache.get("C"))
-my_cache.put("F", "Mission")
-my_cache.print_cache()
-my_cache.put("G", "San Francisco")
-my_cache.print_cache()
-my_cache.put("H", "H")
-my_cache.print_cache()
-my_cache.put("I", "I")
-my_cache.print_cache()
-print(my_cache.get("I"))
-print(my_cache.get("H"))
-print(my_cache.get("I"))
-print(my_cache.get("H"))
-print(my_cache.get("I"))
-print(my_cache.get("H"))
-my_cache.put("J", "J")
-my_cache.print_cache()
-my_cache.put("K", "K")
-my_cache.print_cache()
-my_cache.put("L", "L")
-my_cache.print_cache()
-my_cache.put("M", "M")
-my_cache.print_cache()
+try:
+    LFUCache = __import__("100-lfu_cache").LFUCache
+    from base_caching import BaseCaching
+
+    BaseCaching.MAX_ITEMS = 2
+    LFUCache.MAX_ITEMS = 2
+    my_cache = LFUCache()
+    my_cache.MAX_ITEMS = 2
+    prev_key = None
+
+    for i in range(10):
+        key = "key-{}".format(i)
+        value = "value-{}".format(i)
+        my_cache.put(key, value)
+        if prev_key is not None:
+            my_cache.get(key)
+        prev_key = key
+        my_cache.print_cache()
+
+except:
+    print(sys.exc_info()[1])

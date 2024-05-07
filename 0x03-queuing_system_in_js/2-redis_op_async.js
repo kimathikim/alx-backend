@@ -12,7 +12,7 @@ const client = createClient()
 const setNewSchool = (schoolName, value) => {
   client.set(schoolName, value, (err, reply) => {
     if (err) console.log(err);
-    console.log(reply);
+    console.log(`Reply: ${reply}`);
   });
 };
 

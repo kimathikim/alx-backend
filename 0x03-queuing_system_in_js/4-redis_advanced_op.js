@@ -1,4 +1,4 @@
-import { createClient } from "redis";
+import { createClient, print } from "redis";
 
 const client = createClient()
   .on("error", (err) => {
@@ -8,27 +8,17 @@ const client = createClient()
     console.log("Redis client connected to the server");
   });
 
-client.hset(
-  "HolbertonSchools",
-  "Portland",
-  50,
-  "Seattle",
-  80,
-  "New York",
-  20,
-  "Bogota",
-  20,
-  "Cali",
-  40,
-  "Paris",
-  2,
-  (err, reply) => {
-    if (err) console.error(err);
-    console.log(`Reply: ${reply}`);
-  },
-);
+client
+  .MULTI()
+  .HSET("HolbertonSchools", "Portland", 50, print)
+  .HSET("HolbertonSchools", "Seattle", 80, print)
+  .HSET("HolbertonSchools", "New York", 20, print)
+  .HSET("HolbertonSchools", "Bogota", 20, print)
+  .HSET("HolbertonSchools", "Cali", 40, print)
+  .HSET("HolbertonSchools", "Paris", 2, print)
+  .EXEC();
 
-client.hgetall("HolbertonSchools", (err, object) => {
+client.HGETALL("HolbertonSchools", (err, hashset) => {
   if (err) console.error(err);
-  console.log(object);
+  console.log(hashset);
 });
